@@ -5,8 +5,17 @@ import { Link } from "react-router-dom";
 import Avatar from "../img/avatar.png";
 import Logo from "../img/logo.png";
 
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase.config";
+
 const Header = () => {
-  const login = () => {};
+  const firebaseAuth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const login = async () => {
+    const response = await signInWithPopup(firebaseAuth, provider);
+    console.log(response);
+  };
 
   return (
     <header className="fixed z-50 w-screen  p-6 px-16">
